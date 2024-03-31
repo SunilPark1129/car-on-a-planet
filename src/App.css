@@ -21,6 +21,8 @@
   bottom: 5rem;
   transform: translateX(-50%);
   transition: opacity 0.2s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .keyboard__bottom {
