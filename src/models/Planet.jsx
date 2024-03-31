@@ -4,7 +4,7 @@ import Rock from "./Rock";
 function Planet() {
   return (
     <>
-      <mesh receiveShadow>
+      <mesh receiveShadow position={[0, -10, 0]}>
         <sphereGeometry args={[10, 64, 32]} />
         <meshStandardMaterial color={"#b6b6b6"} flatShading />
         <Rock rotationY={9} rotationZ={3} />

@@ -14,10 +14,10 @@ function Light() {
         intensity={10}
         position={[10, 20, 15]}
         shadow-mapSize={[1024 * 4, 1024 * 4]}
-        shadow-camera-top={10}
-        shadow-camera-bottom={-10}
-        shadow-camera-left={-10}
-        shadow-camera-right={10}
+        shadow-camera-top={20}
+        shadow-camera-bottom={-20}
+        shadow-camera-left={-20}
+        shadow-camera-right={20}
       />
 
       <directionalLight
