@@ -10,3 +10,71 @@
   width: 100%;
   height: 100vh;
 }
+
+.keyboard {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  right: 2rem;
+  /* left: 50%; */
+  bottom: 5rem;
+  /* transform: translateX(-50%); */
+  transition: opacity 0.2s;
+}
+
+.keyboard__bottom {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.keyboard__key {
+  background-color: #dbdbdb;
+  border-radius: 4px;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+.keyboard--none {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.keyboard__key--active {
+  background-color: rgb(224, 189, 113);
+}
+
+.display-keyboard {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #52514d;
+  transition: background-color 0.2s;
+  user-select: none;
+}
+.display-keyboard--active {
+  background-color: rgb(226, 226, 226);
+}
+.display-keyboard--active svg {
+  stroke: black;
+}
+.display-keyboard svg {
+  padding: 0.3rem;
+  width: 100%;
+  transition: stroke 0.2s;
+}

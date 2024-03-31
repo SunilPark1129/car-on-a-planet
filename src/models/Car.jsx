@@ -5,17 +5,20 @@
  */
 
 import React, { useRef } from "react";
-import * as THREE from "three";
 import useMovement from "../utilities/useMovement";
+import { DoubleSide } from "three";
 
-function Car() {
+function Car({ movementKey }) {
   const carFowardBack = useRef();
   const carLeftRight = useRef();
-  const moveDirection = new THREE.Vector3(1, 0, 0);
-  const moveAngle = new THREE.Vector3(0, 1, 0);
 
-  // set car's position and rotation
-  useMovement({ moveDirection, moveAngle, carFowardBack, carLeftRight });
+  useMovement({
+    carFowardBack,
+    carLeftRight,
+    movementKey,
+  });
+
+  // console.log(movementKey);
 
   return (
     <>
@@ -147,7 +150,7 @@ function Car() {
                 <planeGeometry args={[0.55, 0.3]} />
                 <meshPhysicalMaterial
                   color={"#717e80"}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   opacity={0.5}
                   transmission={1}
                   thickness={0.1}
@@ -163,7 +166,7 @@ function Car() {
                 <meshPhysicalMaterial
                   color={"#717e80"}
                   opacity={0.5}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={1}
                   thickness={0.1}
                   ior={2.33}
@@ -179,7 +182,7 @@ function Car() {
                 <meshPhysicalMaterial
                   color={"#717e80"}
                   opacity={0.5}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={1}
                   thickness={0.1}
                   ior={2.33}
@@ -194,7 +197,7 @@ function Car() {
                 <meshPhysicalMaterial
                   color={"#717e80"}
                   opacity={0.5}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={1}
                   thickness={0.1}
                   ior={2.33}
@@ -210,7 +213,7 @@ function Car() {
                 <meshPhysicalMaterial
                   color={"#717e80"}
                   opacity={0.5}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={1}
                   thickness={0.1}
                   ior={2.33}
@@ -222,7 +225,7 @@ function Car() {
                 <meshPhysicalMaterial
                   color={"#717e80"}
                   opacity={0.5}
-                  side={THREE.DoubleSide}
+                  side={DoubleSide}
                   transmission={1}
                   thickness={0.1}
                   ior={2.33}

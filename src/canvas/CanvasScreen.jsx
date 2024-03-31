@@ -4,11 +4,11 @@ import Light from "../models/Light";
 import Car from "../models/Car";
 import Planet from "../models/Planet";
 
-function CanvasScreen() {
+function CanvasScreen({ movementKey }) {
   return (
     <Canvas shadows camera={{ position: [-10, 20, 15], zoom: 1.5 }}>
       <Light />
-      <Car />
+      <Car movementKey={movementKey} />
       <Planet />
     </Canvas>
   );

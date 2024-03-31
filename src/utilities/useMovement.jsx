@@ -1,26 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import * as THREE from "three";
 
 let timer;
+let pointerTimer;
+let acc = 0;
 
-function useMovement({
-  moveDirection,
-  moveAngle,
-  carFowardBack,
-  carLeftRight,
-}) {
+function useMovement({ carFowardBack, carLeftRight, movementKey }) {
+  const [moveDirection] = useState(new THREE.Vector3(1, 0, 0));
+  const [moveAngle] = useState(new THREE.Vector3(0, 1, 0));
   useEffect(() => {
-    // car's acceleration
-    let acc = 0;
-
     // keys for user keydown handler
     // it can store 2 keys
     let keys = [];
 
-    const handleKeyDown = (event) => {
+    if (movementKey) {
+      pointerTimer = setInterval(() => {
+        handleKeyDown({ key: movementKey });
+      }, 30);
+    } else {
+      clearTimeout(pointerTimer);
+      handleKeyUp();
+    }
+
+    function handleKeyDown(event) {
       // speed
       const rotationAngle = Math.PI / (100 - acc);
 
-      const { key } = event;
+      const { key, keyCode } = event;
 
       // store the key value
       if (keys.length === 0 || keys[0] === key) {
@@ -29,7 +35,12 @@ function useMovement({
         keys[1] = key;
       }
 
-      // set movement
+      // when event key is from keydown handler
+      // clear interval timer (onPointerHandler)
+      if (keyCode) {
+        clearTimeout(pointerTimer);
+      }
+
       if (keys[0] === "w" || keys[1] === "w") {
         caseW();
       }
@@ -67,10 +78,9 @@ function useMovement({
         carLeftRight.current.rotateY(-rotationAngle);
         moveDirection.applyAxisAngle(moveAngle, -rotationAngle);
       }
-    };
+    }
 
-    const handleKeyUp = () => {
-      // clear keys
+    function handleKeyUp() {
       keys = [];
 
       if (acc <= 0) return;
@@ -86,7 +96,7 @@ function useMovement({
         const rotationAngle = Math.PI / (180 - acc);
         carFowardBack.current.rotateOnAxis(moveDirection, rotationAngle);
       }, 50);
-    };
+    }
 
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
@@ -95,7 +105,7 @@ function useMovement({
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, []);
+  }, [movementKey]);
 }
 
 export default useMovement;
