@@ -14,7 +14,7 @@ function Keyboard({
             movementKey === "w" && "keyboard__key--active"
           }`}
           onPointerDown={() => pointerDownHandler("w")}
-          onPointerOut={pointerOutHandler}
+          onPointerOut={() => pointerOutHandler("w")}
         >
           W
         </div>
@@ -25,7 +25,7 @@ function Keyboard({
             movementKey === "a" && "keyboard__key--active"
           }`}
           onPointerDown={() => pointerDownHandler("a")}
-          onPointerOut={pointerOutHandler}
+          onPointerOut={() => pointerOutHandler("a")}
         >
           A
         </div>
@@ -34,7 +34,7 @@ function Keyboard({
             movementKey === "s" && "keyboard__key--active"
           }`}
           onPointerDown={() => pointerDownHandler("s")}
-          onPointerOut={pointerOutHandler}
+          onPointerOut={() => pointerOutHandler("s")}
         >
           S
         </div>
@@ -43,7 +43,7 @@ function Keyboard({
             movementKey === "d" && "keyboard__key--active"
           }`}
           onPointerDown={() => pointerDownHandler("d")}
-          onPointerOut={pointerOutHandler}
+          onPointerOut={() => pointerOutHandler("d")}
         >
           D
         </div>

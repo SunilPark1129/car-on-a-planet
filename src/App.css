@@ -79,3 +79,10 @@
   width: 100%;
   transition: stroke 0.2s;
 }
+
+.test {
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
