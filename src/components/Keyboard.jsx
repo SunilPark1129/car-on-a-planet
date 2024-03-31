@@ -1,13 +1,13 @@
 import React from "react";
 
 function Keyboard({
-  isDisplaying,
+  isDisplayingKeyboard,
   movementKey,
   pointerDownHandler,
   pointerLeaveHandler,
 }) {
   return (
-    <div className={`keyboard ${!isDisplaying && "keyboard--none"}`}>
+    <div className={`keyboard ${!isDisplayingKeyboard && "keyboard--none"}`}>
       <div className="keyboard__top">
         <div
           className={`keyboard__key ${

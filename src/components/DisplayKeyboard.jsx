@@ -1,13 +1,13 @@
 import React from "react";
 
-function DisplayKeyboard({ isDisplaying, setIsDisplaying }) {
+function DisplayKeyboard({ isDisplayingKeyboard, setIsDisplayingKeyboard }) {
   function clickHandller() {
-    setIsDisplaying((prev) => !prev);
+    setIsDisplayingKeyboard((prev) => !prev);
   }
   return (
     <button
       className={`display-keyboard ${
-        isDisplaying && "display-keyboard--active"
+        isDisplayingKeyboard && "display-keyboard--active"
       }`}
       onClick={clickHandller}
     >

@@ -5,6 +5,7 @@ import Car from "../models/Car";
 import Planet from "../models/Planet";
 
 function CanvasScreen({ movementKey }) {
+  // convert user's pointer key values to array type
   const keys = Object.entries(movementKey)
     .filter(([_, bool]) => bool)
     .map(([item]) => item);
