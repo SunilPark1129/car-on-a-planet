@@ -7,27 +7,25 @@ function CameraAnimation() {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (!clicked) setClicked(true);
-    }, 300);
-  }, []);
+    if (!clicked) {
+      const animationId = requestAnimationFrame(animate);
+      const target = new THREE.Vector3(-40, 10, 5);
+      function animate() {
+        const currentPosition = camera.position;
+        const distance = currentPosition.distanceTo(target);
 
-  const target = new THREE.Vector3(-40, 10, 5);
-
-  useFrame(() => {
-    if (clicked) {
-      const currentPosition = camera.position;
-      const distance = currentPosition.distanceTo(target);
-
-      if (distance > 0.1) {
-        const direction = target.clone().sub(currentPosition);
-        const step = direction.multiplyScalar(0.005);
-        camera.position.add(step);
-      } else {
-        setClicked(false);
+        if (distance > 2) {
+          const direction = target.clone().sub(currentPosition);
+          const step = direction.multiplyScalar(0.005);
+          camera.position.add(step);
+          requestAnimationFrame(animate);
+        } else {
+          setClicked(false);
+          cancelAnimationFrame(animationId);
+        }
       }
     }
-  });
+  }, []);
 
   return <perspectiveCamera />;
 }
