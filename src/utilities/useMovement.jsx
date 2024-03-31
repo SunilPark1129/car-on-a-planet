@@ -109,10 +109,10 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
           clearInterval(accTimeId);
           accTimeId = null;
         }
-        acc = acc - 5;
+        acc = acc - 3;
         const rotationAngle = Math.PI / (180 - acc);
         carFowardBack.current.rotateOnAxis(moveDirection, rotationAngle);
-      }, 50);
+      }, 40);
     }
 
     document.addEventListener("keydown", handleKeyDown);
