@@ -1,63 +1,60 @@
 import React, { useEffect, useState } from "react";
 import * as THREE from "three";
 
-let timer;
-let pointerTimer;
+let accTimeId;
+let keyTimeId;
 let acc = 0;
 
 function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
   const [moveDirection] = useState(new THREE.Vector3(1, 0, 0));
   const [moveAngle] = useState(new THREE.Vector3(0, 1, 0));
   useEffect(() => {
-    // keys for user keydown handler
-    // it can store 2 keys
+    // keys for user keydown values
+    // it can store upto 2 keys
     let keys = [];
 
+    /* ----------------------------- tab/clicked handler ----------------------------- */
+
     if (pointerKeys.length !== 0) {
-      if (pointerTimer) clearInterval(pointerTimer);
-      pointerTimer = setInterval(() => {
-        handleKeyDown({ key: pointerKeys });
+      if (keyTimeId) clearInterval(keyTimeId);
+      keyTimeId = setInterval(() => {
+        addMove(pointerKeys);
       }, 30);
     } else {
-      clearTimeout(pointerTimer);
       handleKeyUp();
     }
 
+    /* ----------------------------- keydown handler ----------------------------- */
     function handleKeyDown(event) {
-      // speed
+      const { key } = event;
+      if (keys.includes(key)) return;
+      if (keys.length === 2) {
+        keys.shift();
+      }
+      keys.push(key);
+
+      if (keyTimeId) clearInterval(keyTimeId);
+      keyTimeId = setInterval(() => {
+        addMove(keys);
+      }, 30);
+    }
+
+    /* ----------------------------- add movement ----------------------------- */
+
+    function addMove(keys) {
+      // car speed
       const rotationAngle = Math.PI / (100 - acc);
 
-      /* if keyCode is not empty then it's from keyboard event */
-      /* else it's from pointer event */
-      const { key, keyCode } = event;
-
-      // store the key value
-      if (keyCode) {
-        if (keys.length === 0 || keys[0] === key) {
-          keys[0] = key;
-        } else {
-          keys[1] = key;
-        }
-      } else {
-        keys = key;
-      }
-
-      // when event key is from keydown handler
-      // clear interval timer (onPointerHandler)
-      if (keyCode) {
-        clearTimeout(pointerTimer);
-      }
-
-      if (keys[0] === "w" || keys[1] === "w") {
+      if (keys.includes("w")) {
         caseW();
       }
-      if (keys[0] === "s" || keys[1] === "s") {
+      if (keys.includes("s")) {
         caseS();
       }
-      if (keys[0] === "a" || keys[1] === "a") {
+      if (keys.includes("a")) {
         caseA();
       }
-      if (keys[0] === "d" || keys[1] === "d") {
+      if (keys.includes("d")) {
         caseD();
       }
 
@@ -87,17 +84,20 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
       }
     }
 
+    /* ----------------------------- clear datas ----------------------------- */
+
     function handleKeyUp() {
+      clearTimeout(keyTimeId);
       keys = [];
 
       if (acc <= 0) return;
-      if (timer) return;
+      if (accTimeId) return;
 
-      // slowly car stops
-      timer = setInterval(() => {
+      // stops the car slowly by using acceleration
+      accTimeId = setInterval(() => {
         if (acc <= 0) {
-          clearInterval(timer);
-          timer = null;
+          clearInterval(accTimeId);
+          accTimeId = null;
         }
         acc = acc - 5;
         const rotationAngle = Math.PI / (180 - acc);
