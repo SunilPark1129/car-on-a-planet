@@ -11,16 +11,19 @@ import Keyboard from "./components/Keyboard";
 import DisplayKeyboard from "./components/DisplayKeyboard";
 
 function App() {
-  const [movementKey, setMovementKey] = useState([]);
+  const [movementKey, setMovementKey] = useState({
+    w: false,
+    a: false,
+    s: false,
+    d: false,
+  });
   const [isDisplaying, setIsDisplaying] = useState(false);
   function pointerDownHandler(key) {
-    if (!movementKey.includes(key)) {
-      setMovementKey((prev) => [...prev, key]);
-    }
+    setMovementKey((prev) => ({ ...prev, [key]: true }));
   }
-  function pointerOutHandler(key) {
-    const keys = movementKey.filter((item) => item !== key);
-    setMovementKey(keys);
+  function pointerLeaveHandler(key) {
+    // const keys = movementKey.filter((item) => item !== key);
+    setMovementKey((prev) => ({ ...prev, [key]: false }));
   }
 
   return (
@@ -34,12 +37,14 @@ function App() {
         isDisplaying={isDisplaying}
         movementKey={movementKey}
         pointerDownHandler={pointerDownHandler}
-        pointerOutHandler={pointerOutHandler}
+        pointerLeaveHandler={pointerLeaveHandler}
       />
       <div className="test">
-        {movementKey.map((item) => (
-          <p key={item}>{item}</p>
-        ))}
+        {Object.entries(movementKey)
+          .filter(([key, bool]) => bool)
+          .map((item) => (
+            <p key={item}>{item}</p>
+          ))}
       </div>
     </div>
   );
