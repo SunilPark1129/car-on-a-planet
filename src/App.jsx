@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <CanvasScreen />
+      <CanvasScreen movementKey={movementKey} />
       <DisplayKeyboard
         isDisplaying={isDisplaying}
         setIsDisplaying={setIsDisplaying}

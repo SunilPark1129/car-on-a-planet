@@ -8,17 +8,15 @@ import React, { useRef } from "react";
 import useMovement from "../utilities/useMovement";
 import { DoubleSide } from "three";
 
-function Car({ movementKey }) {
+function Car({ pointerKeys }) {
   const carFowardBack = useRef();
   const carLeftRight = useRef();
 
   useMovement({
     carFowardBack,
     carLeftRight,
-    movementKey,
+    pointerKeys,
   });
-
-  // console.log(movementKey);
 
   return (
     <>

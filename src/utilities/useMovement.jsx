@@ -5,7 +5,7 @@ let timer;
 let pointerTimer;
 let acc = 0;
 
-function useMovement({ carFowardBack, carLeftRight, movementKey }) {
+function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
   const [moveDirection] = useState(new THREE.Vector3(1, 0, 0));
   const [moveAngle] = useState(new THREE.Vector3(0, 1, 0));
   useEffect(() => {
@@ -13,10 +13,10 @@ function useMovement({ carFowardBack, carLeftRight, movementKey }) {
     // it can store 2 keys
     let keys = [];
 
-    if (movementKey) {
+    if (pointerKeys.length !== 0) {
       if (pointerTimer) clearInterval(pointerTimer);
       pointerTimer = setInterval(() => {
-        handleKeyDown({ key: movementKey });
+        handleKeyDown({ key: pointerKeys });
       }, 30);
     } else {
       clearTimeout(pointerTimer);
@@ -27,13 +27,19 @@ function useMovement({ carFowardBack, carLeftRight, movementKey }) {
       // speed
       const rotationAngle = Math.PI / (100 - acc);
 
+      /* if keyCode is not empty then it's from keyboard event */
+      /* else it's from pointer event */
       const { key, keyCode } = event;
 
       // store the key value
-      if (keys.length === 0 || keys[0] === key) {
-        keys[0] = key;
+      if (keyCode) {
+        if (keys.length === 0 || keys[0] === key) {
+          keys[0] = key;
+        } else {
+          keys[1] = key;
+        }
       } else {
-        keys[1] = key;
+        keys = key;
       }
 
       // when event key is from keydown handler
@@ -106,7 +112,7 @@ function useMovement({ carFowardBack, carLeftRight, movementKey }) {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [movementKey]);
+  }, [pointerKeys]);
 }
 
 export default useMovement;
