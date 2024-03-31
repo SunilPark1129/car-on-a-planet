@@ -50,6 +50,16 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
       }
       if (keys.includes("s")) {
         caseS();
+
+        // when the car is reversing with left/right direction, adjust left and right symmetry (user experience)
+        if (keys.includes("a")) {
+          caseD();
+          return;
+        }
+        if (keys.includes("d")) {
+          caseA();
+          return;
+        }
       }
       if (keys.includes("a")) {
         caseA();
