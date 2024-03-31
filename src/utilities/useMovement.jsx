@@ -14,6 +14,7 @@ function useMovement({ carFowardBack, carLeftRight, movementKey }) {
     let keys = [];
 
     if (movementKey) {
+      if (pointerTimer) clearInterval(pointerTimer);
       pointerTimer = setInterval(() => {
         handleKeyDown({ key: movementKey });
       }, 30);
