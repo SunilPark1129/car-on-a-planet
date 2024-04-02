@@ -22,10 +22,12 @@ function App() {
   // display keyboard
   const [isDisplayingKeyboard, setIsDisplayingKeyboard] = useState(false);
 
-  function pointerDownHandler(key) {
+  function pointerDownHandler(e, key) {
+    console.log("out", e.pointerId);
     setMovementKey((prev) => ({ ...prev, [key]: true }));
   }
-  function pointerLeaveHandler(key) {
+  function pointerLeaveHandler(e, key) {
+    console.log("out", e.pointerId);
     setMovementKey((prev) => ({ ...prev, [key]: false }));
   }
 
