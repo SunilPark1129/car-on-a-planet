@@ -125,9 +125,14 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
 
     /* ----------------------------- clear datas ----------------------------- */
 
-    function handleKeyUp() {
+    function handleKeyUp(e) {
+      if (e?.key) {
+        keys = keys.filter((item) => item !== e.key);
+        if (keys.length !== 0) return;
+      } else {
+        keys = [];
+      }
       clearTimeout(keyTimeId);
-      keys = [];
 
       if (acc <= 0) return;
       if (accTimeId) return;
