@@ -35,8 +35,8 @@ function Keyboard({
           className={`keyboard__key ${
             movementKey.w && "keyboard__key--active"
           }`}
-          onPointerDown={() => pointerDownHandler("w")}
-          onPointerLeave={() => pointerLeaveHandler("w")}
+          onTouchStart={() => pointerDownHandler("w")}
+          onTouchEnd={() => pointerLeaveHandler("w")}
         >
           <Arrow pos={0} />
         </div>
@@ -44,8 +44,8 @@ function Keyboard({
           className={`keyboard__key ${
             movementKey.s && "keyboard__key--active"
           }`}
-          onPointerDown={() => pointerDownHandler("s")}
-          onPointerLeave={() => pointerLeaveHandler("s")}
+          onTouchStart={() => pointerDownHandler("s")}
+          onTouchEnd={() => pointerLeaveHandler("s")}
         >
           <Arrow pos={180} />
         </div>
@@ -55,8 +55,8 @@ function Keyboard({
           className={`keyboard__key ${
             movementKey.a && "keyboard__key--active"
           }`}
-          onPointerDown={() => pointerDownHandler("a")}
-          onPointerLeave={() => pointerLeaveHandler("a")}
+          onTouchStart={() => pointerDownHandler("a")}
+          onTouchEnd={() => pointerLeaveHandler("a")}
         >
           <Arrow pos={-90} />{" "}
         </div>
@@ -64,8 +64,8 @@ function Keyboard({
           className={`keyboard__key ${
             movementKey.d && "keyboard__key--active"
           }`}
-          onPointerDown={() => pointerDownHandler("d")}
-          onPointerLeave={() => pointerLeaveHandler("d")}
+          onTouchStart={() => pointerDownHandler("d")}
+          onTouchEnd={() => pointerLeaveHandler("d")}
         >
           <Arrow pos={90} />
         </div>
