@@ -14,15 +14,30 @@
 .keyboard {
   position: fixed;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem;
+  align-items: flex-end;
   gap: 2rem;
   left: 50%;
-  bottom: 2.5rem;
-  transform: translateX(-50%);
+  bottom: 0;
   transition: opacity 0.2s;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+  max-width: 80rem;
+  transform: translateX(-50%);
+}
+
+.keyboard svg {
+  padding: 0.8rem;
+  width: 100%;
+  height: 100%;
+}
+
+.keyboard__top {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
 }
 
 .keyboard__bottom {

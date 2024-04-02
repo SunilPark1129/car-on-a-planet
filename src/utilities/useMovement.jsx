@@ -26,12 +26,41 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
 
     /* ----------------------------- keydown handler ----------------------------- */
     function handleKeyDown(event) {
-      const { key } = event;
-      if (keys.includes(key)) return;
+      const { key, keyCode } = event;
+      let direction;
+
+      switch (keyCode) {
+        case 38:
+          direction = "w";
+          break;
+        case 40:
+          direction = "s";
+          break;
+        case 37:
+          direction = "a";
+          break;
+        case 39:
+          direction = "d";
+          break;
+        default:
+          direction = key;
+          break;
+      }
+
+      if (
+        direction !== "w" &&
+        direction !== "s" &&
+        direction !== "a" &&
+        direction !== "d"
+      ) {
+        return;
+      }
+
+      if (keys.includes(direction)) return;
       if (keys.length === 2) {
         keys.shift();
       }
-      keys.push(key);
+      keys.push(direction);
 
       if (keyTimeId) clearInterval(keyTimeId);
       keyTimeId = setInterval(() => {
