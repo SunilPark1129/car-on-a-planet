@@ -37,6 +37,8 @@ function Keyboard({
           }`}
           onTouchStart={() => pointerDownHandler("w")}
           onTouchEnd={() => pointerLeaveHandler("w")}
+          onMouseDown={() => pointerDownHandler("w")}
+          onMouseLeave={() => pointerLeaveHandler("w")}
         >
           <Arrow pos={0} />
         </div>
@@ -46,6 +48,8 @@ function Keyboard({
           }`}
           onTouchStart={() => pointerDownHandler("s")}
           onTouchEnd={() => pointerLeaveHandler("s")}
+          onMouseDown={() => pointerDownHandler("s")}
+          onMouseLeave={() => pointerLeaveHandler("s")}
         >
           <Arrow pos={180} />
         </div>
@@ -57,6 +61,8 @@ function Keyboard({
           }`}
           onTouchStart={() => pointerDownHandler("a")}
           onTouchEnd={() => pointerLeaveHandler("a")}
+          onMouseDown={() => pointerDownHandler("a")}
+          onMouseLeave={() => pointerLeaveHandler("a")}
         >
           <Arrow pos={-90} />{" "}
         </div>
@@ -66,6 +72,8 @@ function Keyboard({
           }`}
           onTouchStart={() => pointerDownHandler("d")}
           onTouchEnd={() => pointerLeaveHandler("d")}
+          onMouseDown={() => pointerDownHandler("d")}
+          onMouseLeave={() => pointerLeaveHandler("d")}
         >
           <Arrow pos={90} />
         </div>
