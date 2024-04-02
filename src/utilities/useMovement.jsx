@@ -27,6 +27,15 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
     /* ----------------------------- keydown handler ----------------------------- */
     function handleKeyDown(event) {
       const { key, keyCode } = event;
+
+      // ignore current process when directions are left and right at the same time
+      if (
+        (keys.includes("a") && key === "d") ||
+        (keys.includes("d") && key === "a")
+      ) {
+        return;
+      }
+
       let direction;
 
       switch (keyCode) {
