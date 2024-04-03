@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import { OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 function Light() {
+  const circleRef = useRef();
+  const lightRef = useRef();
+
+  const radius = 20;
+  useFrame(({ clock }) => {
+    const time = clock.getElapsedTime();
+    const theta = time * 0.25;
+    const x = radius * Math.cos(theta);
+    const y = radius * Math.sin(theta);
+
+    circleRef.current.position.set(x, y, y);
+    lightRef.current.position.set(x, y, y);
+  });
+
   return (
     <>
       <OrbitControls />
@@ -9,33 +24,22 @@ function Light() {
       <ambientLight intensity={0.1} />
 
       <directionalLight
+        ref={lightRef}
         castShadow
-        color="#8b8b8b"
-        intensity={10}
-        position={[10, 20, 15]}
-        shadow-mapSize={[1024 * 4, 1024 * 4]}
-        shadow-camera-top={20}
-        shadow-camera-bottom={-20}
-        shadow-camera-left={-20}
-        shadow-camera-right={20}
-      />
-
-      <directionalLight
-        castShadow
-        color="#ce746e"
+        color="#be7c7c"
         intensity={10}
         position={[20, 25, 5]}
-        shadow-mapSize={[1024 * 4, 1024 * 4]}
+        shadow-mapSize={[1024 * 5, 1024 * 5]}
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
         shadow-camera-left={-10}
         shadow-camera-right={10}
       />
 
-      <group rotation={[1, 0.7, 5.25]}>
-        <mesh position={[0, 33, 0]}>
+      <group>
+        <mesh position={[10, 10, 20]} ref={circleRef}>
           <sphereGeometry args={[1, 32, 32]} />
-          <meshBasicMaterial color={"#f35e5e"} />
+          <meshStandardMaterial color={"#e0483d"} emissive={"#ff4c3c"} />
         </mesh>
       </group>
     </>

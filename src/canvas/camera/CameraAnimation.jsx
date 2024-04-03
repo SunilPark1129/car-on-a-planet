@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 function CameraAnimation() {
   const { camera } = useThree();
