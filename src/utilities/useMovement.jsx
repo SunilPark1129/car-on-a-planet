@@ -137,7 +137,7 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
     function handleKeyUp(e) {
       if (e?.key) {
         keys = keys.filter((item) => item !== e.key);
-        if (keys.length !== 0) return;
+        if (keys.length !== 0 && keys.includes("w")) return;
       } else {
         keys = [];
       }
