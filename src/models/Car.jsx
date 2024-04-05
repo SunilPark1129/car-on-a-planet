@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import useMovement from "../utilities/useMovement";
 import { DoubleSide } from "three";
 
@@ -17,6 +17,20 @@ function Car({ pointerKeys }) {
     carLeftRight,
     pointerKeys,
   });
+
+  // car engine shake
+  useEffect(() => {
+    let trigger = false;
+    setInterval(() => {
+      if (trigger) {
+        carFowardBack.current.position.y = 0.05;
+        trigger = false;
+      } else {
+        carFowardBack.current.position.y = 0;
+        trigger = true;
+      }
+    }, 150);
+  }, []);
 
   return (
     <>
