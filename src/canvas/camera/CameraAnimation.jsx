@@ -9,7 +9,7 @@ function CameraAnimation() {
   useEffect(() => {
     if (!clicked) {
       const animationId = requestAnimationFrame(animate);
-      const target = new THREE.Vector3(-10, 10, 15);
+      const target = new THREE.Vector3(15, 20, 15);
       function animate() {
         const currentPosition = camera.position;
         const distance = currentPosition.distanceTo(target);
