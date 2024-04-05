@@ -6,10 +6,10 @@ function Light() {
   const circleRef = useRef();
   const lightRef = useRef();
 
-  const radius = 20;
+  const radius = 12;
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    const theta = time * 0.25;
+    const theta = time * 0.22;
     const x = radius * Math.cos(theta);
     const y = radius * Math.sin(theta);
 
@@ -26,9 +26,8 @@ function Light() {
       <directionalLight
         ref={lightRef}
         castShadow
-        color="#be7c7c"
+        color="#8d7575"
         intensity={10}
-        position={[20, 25, 5]}
         shadow-mapSize={[1024 * 5, 1024 * 5]}
         shadow-camera-top={10}
         shadow-camera-bottom={-10}
@@ -39,7 +38,7 @@ function Light() {
       <group>
         <mesh position={[10, 10, 20]} ref={circleRef}>
           <sphereGeometry args={[1, 32, 32]} />
-          <meshStandardMaterial color={"#e0483d"} emissive={"#ff4c3c"} />
+          <meshStandardMaterial color={"#b69593"} emissive={"#ddb6b6"} />
         </mesh>
       </group>
     </>
