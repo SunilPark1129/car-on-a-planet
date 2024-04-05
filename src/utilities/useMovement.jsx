@@ -5,6 +5,28 @@ let accTimeId;
 let keyTimeId;
 let acc = 0;
 
+function keySwitch({ key, keyCode }) {
+  let direction;
+  switch (keyCode) {
+    case 38:
+      direction = "w";
+      break;
+    case 40:
+      direction = "s";
+      break;
+    case 37:
+      direction = "a";
+      break;
+    case 39:
+      direction = "d";
+      break;
+    default:
+      direction = key;
+      break;
+  }
+  return direction;
+}
+
 function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
   const [moveDirection] = useState(new THREE.Vector3(1, 0, 0));
   const [moveAngle] = useState(new THREE.Vector3(0, 1, 0));
@@ -38,23 +60,7 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
 
       let direction;
 
-      switch (keyCode) {
-        case 38:
-          direction = "w";
-          break;
-        case 40:
-          direction = "s";
-          break;
-        case 37:
-          direction = "a";
-          break;
-        case 39:
-          direction = "d";
-          break;
-        default:
-          direction = key;
-          break;
-      }
+      direction = keySwitch({ key, keyCode });
 
       if (
         direction !== "w" &&
@@ -136,7 +142,10 @@ function useMovement({ carFowardBack, carLeftRight, pointerKeys }) {
 
     function handleKeyUp(e) {
       if (e?.key) {
-        keys = keys.filter((item) => item !== e.key);
+        let direction;
+        const { key, keyCode } = e;
+        direction = keySwitch({ key, keyCode });
+        keys = keys.filter((item) => item !== direction);
 
         if (keys.length !== 0 && keys.includes("w")) return;
       } else {
