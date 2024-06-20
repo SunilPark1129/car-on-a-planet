@@ -96,3 +96,56 @@
   width: 100%;
   transition: stroke 0.2s;
 }
+
+.manual {
+  position: fixed;
+  top: 4rem;
+  left: 1rem;
+  right: 1rem;
+  margin-left: auto;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+
+  background-color: rgba(85, 85, 85, 0.473);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 25em;
+  padding: 1rem;
+  line-height: 1.5rem;
+}
+
+.manual span {
+  padding: 2px 6px;
+  background-color: #dddddd;
+  color: black;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.manual h1 {
+  color: rgb(213, 236, 252);
+  font-size: 1.5rem;
+}
+
+.manual p {
+  color: #d4d2c5;
+  font-size: 0.8rem;
+}
+
+.manual button {
+  width: max-content;
+  padding: 0.5em 2em;
+  border-radius: 4px;
+  background-color: rgb(110, 109, 101);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.manual button:hover {
+  background-color: rgb(170, 169, 159);
+}

@@ -9,6 +9,7 @@ import "./App.css";
 import CanvasScreen from "./canvas/CanvasScreen";
 import Keyboard from "./components/Keyboard";
 import DisplayKeyboard from "./components/DisplayKeyboard";
+import Manual from "./components/Manual";
 
 function App() {
   // state for user pointer values (for mobile)
@@ -42,6 +43,7 @@ function App() {
         pointerDownHandler={pointerDownHandler}
         pointerLeaveHandler={pointerLeaveHandler}
       />
+      <Manual />
     </div>
   );
 }
